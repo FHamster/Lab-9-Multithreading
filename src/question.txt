@@ -1,0 +1,27 @@
+1. 线程的创建与启动
+
+邮件客户端(如foxmail)支持多帐号多线程，可以在接收邮件的同时进行邮件发送。不考虑多帐号的问题，编写ReceiveMailRunnable与SendMailRunnable类，均实现Runnable接口。这两个类主要有如下功能：
+
+(1)分别打印"I am receiving emails" 和"I am sending emails"；
+
+(2)休眠1000ms-2000ms间的随机时间(Thread.sleep..)；
+
+(3)循环执行上述(1)、(2)内容，循环10-20次(使用随机数实现)；
+
+(4)退出时打印"当前线程XXX正要退出"，XXX为当前线程的名称(Thread.currentThread.getName())。
+
+编写TestThread类，在main方法中启动3个ReceiveMailRunnable与3个SendMailRunnable线程。希望当这3个ReceiveMailRunnable与3个SendMailRunnable线程结束，才执行最后一句代码，打印"foxmail任务结束"(使用join)。
+
+2. 并发计算模拟
+
+计算从1到1亿整型数相加。要求使用并发程序处理，即采用多线程实现，在主线程中将计算结果累加(不能使用累加公式)。
+
+大致思路：
+
+(1)编写SumWorker类，实现Runnable接口，计算从m到n的和，其中m,n由构造方法传入；
+
+(2)在主程序中每次开启若干个SumWorker线程(具体数量由程序指定或者用户输入)，计算完成之后，将部分结果累加，然后再启动另一批线程，直到计算完成。
+
+说明：本题有点类似“网格计算”或者“云计算”。
+
+扩展（选做）：学有余力的同学可以尝试研究参数对并行性能的影响，如：同时并发线程数、每线程计算数量、共享式sum与独立式sum等，并尝试分析其原因。
