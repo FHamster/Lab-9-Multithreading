@@ -3,10 +3,16 @@ package Test2;
 
 public class SumWorker implements Runnable
 {
-//    private int i = 0;
+    //    private int i = 0;
     private int min = 0;
     private int max = 0;
-    private static long sum = 0;
+    private long partSum = 0;
+
+    //    private static long sum = 0;
+    public long getPartSum()
+    {
+        return partSum;
+    }
 
     public SumWorker(int min, int max)
     {
@@ -14,10 +20,10 @@ public class SumWorker implements Runnable
         this.max = max;
     }
 
-    public long getResult()
-    {
-        return sum;
-    }
+//    public long getResult()
+//    {
+//        return sum;
+//    }
 
     @Override
     public void run()
@@ -30,12 +36,12 @@ public class SumWorker implements Runnable
 
     private synchronized void add(int n)
     {
-        System.out.printf("%s %d\n",Thread.currentThread().getName(),n);
-        sum += n;
+//        System.out.printf("%s %d\n",Thread.currentThread().getName(),n);
+        partSum += n;
     }
 
-    public static long getSum()
-    {
-        return sum;
-    }
+//    public static long getSum()
+//    {
+//        return sum;
+//    }
 }
